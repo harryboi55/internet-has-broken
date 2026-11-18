@@ -1,0 +1,752 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE INTERNET HAS BROKEN 💀</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+ --bg:#090914;
+ --pink:#ff3cac;
+ --blue:#00e5ff;
+ --yellow:#ffe600;
+ --green:#50ff85;
+}
+
+* {box-sizing:border-box}
+
+body {
+ margin:0;
+ background:var(--bg);
+ color:white;
+ font-family:Fredoka,sans-serif;
+ overflow-x:hidden;
+ transition:background .4s;
+}
+
+body.party {
+ background:linear-gradient(120deg,#26005b,#001c4b,#59002f);
+}
+
+nav {
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ padding:18px 6%;
+ background:#11111e;
+ border-bottom:2px solid var(--pink);
+ position:sticky;
+ top:0;
+ z-index:50;
+}
+
+.logo {
+ font-size:23px;
+ font-weight:700;
+ color:var(--yellow);
+}
+
+nav span {color:var(--blue)}
+
+button {
+ border:0;
+ border-radius:12px;
+ padding:13px 20px;
+ font-family:inherit;
+ font-size:16px;
+ font-weight:bold;
+ cursor:pointer;
+ transition:.2s;
+}
+
+button:hover {
+ transform:scale(1.08) rotate(-2deg);
+ filter:brightness(1.2);
+}
+
+.primary {
+ background:var(--pink);
+ color:white;
+ box-shadow:0 0 20px #ff3cac66;
+}
+
+.secondary {
+ background:var(--blue);
+ color:#080817;
+}
+
+.danger {
+ background:#ff3030;
+ color:white;
+}
+
+.hero {
+ text-align:center;
+ padding:95px 20px 65px;
+}
+
+.hero h1 {
+ font-size:clamp(48px,9vw,105px);
+ line-height:.95;
+ margin:10px;
+ color:var(--yellow);
+ text-shadow:5px 5px var(--pink),10px 10px #00e5ff;
+}
+
+.hero p {
+ font-size:21px;
+ color:#c5c5d8;
+}
+
+.tag {
+ display:inline-block;
+ border:1px solid var(--green);
+ color:var(--green);
+ padding:8px 15px;
+ border-radius:30px;
+ font-size:12px;
+ letter-spacing:3px;
+}
+
+.section {
+ max-width:1150px;
+ margin:65px auto;
+ padding:0 22px;
+}
+
+.section-title {
+ font-size:35px;
+ border-left:6px solid var(--pink);
+ padding-left:15px;
+ margin-bottom:25px;
+}
+
+.grid {
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(245px,1fr));
+ gap:20px;
+}
+
+.card {
+ background:#151525;
+ border:1px solid #33334d;
+ border-radius:20px;
+ padding:25px;
+ min-height:210px;
+ position:relative;
+ overflow:hidden;
+ transition:.25s;
+}
+
+.card:hover {
+ border-color:var(--blue);
+ transform:translateY(-6px);
+ box-shadow:0 15px 40px #00e5ff20;
+}
+
+.card h3 {font-size:24px;margin-top:5px}
+.card p {color:#b7b7c9;line-height:1.6}
+
+.card button {margin-top:10px}
+
+.emoji {font-size:35px}
+
+.result {
+ margin-top:15px;
+ color:var(--green);
+ font-family:'Space Mono',monospace;
+ font-size:13px;
+ min-height:22px;
+}
+
+.panel {
+ background:#10101c;
+ border:1px solid #34344e;
+ padding:30px;
+ border-radius:20px;
+ margin-top:20px;
+}
+
+#loadingBar {
+ width:100%;
+ height:15px;
+ background:#29293d;
+ border-radius:20px;
+ overflow:hidden;
+ margin:20px 0;
+}
+
+#loadingFill {
+ width:0%;
+ height:100%;
+ background:linear-gradient(90deg,var(--pink),var(--blue));
+ transition:width .2s;
+}
+
+.fake-screen {
+ background:#000;
+ color:#50ff85;
+ padding:20px;
+ border-radius:12px;
+ font-family:'Space Mono',monospace;
+ min-height:140px;
+ line-height:1.8;
+ overflow-wrap:anywhere;
+}
+
+input {
+ padding:14px;
+ border-radius:10px;
+ border:1px solid #444;
+ background:#090914;
+ color:white;
+ font:inherit;
+ max-width:100%;
+}
+
+footer {
+ margin-top:90px;
+ padding:45px;
+ text-align:center;
+ background:#11111e;
+ color:#77778e;
+}
+
+#toast {
+ position:fixed;
+ bottom:25px;
+ right:25px;
+ background:var(--yellow);
+ color:black;
+ font-weight:bold;
+ padding:18px 25px;
+ border-radius:12px;
+ transform:translateY(150px);
+ transition:.4s;
+ z-index:1000;
+ max-width:300px;
+}
+
+#toast.show {transform:translateY(0)}
+
+.floating {
+ position:fixed;
+ pointer-events:none;
+ z-index:100;
+ animation:floatUp 2s forwards;
+ font-size:30px;
+}
+
+@keyframes floatUp {
+ to {transform:translateY(-180px) rotate(360deg);opacity:0}
+}
+
+@keyframes shake {
+ 0%,100% {transform:translateX(0)}
+ 25% {transform:translateX(-8px)}
+ 75% {transform:translateX(8px)}
+}
+
+.shake {animation:shake .3s infinite}
+
+#runaway {position:relative}
+
+#score {
+ color:var(--yellow);
+ font-size:25px;
+}
+
+.secret {
+ color:#77778e;
+ font-size:12px;
+ cursor:pointer;
+}
+
+@media(max-width:600px) {
+ nav {padding:15px}
+ .hero {padding-top:65px}
+ .section-title {font-size:27px}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+ <div class="logo">💀 INTERNET.EXE</div>
+ <div><span>STATUS:</span> DEFINITELY NOT NORMAL</div>
+</nav>
+
+<header class="hero">
+ <div class="tag">THE MOST USELESS WEBSITE EVER CREATED</div>
+ <h1>THE INTERNET<br>HAS BROKEN.</h1>
+ <p>We have absolutely no idea what is happening.</p>
+ <button class="primary" onclick="scrollToStuff()">ENTER THE CHAOS ↓</button>
+ <p style="font-size:12px">WARNING: MAY CAUSE EXTREME CONFUSION</p>
+</header>
+
+<section class="section" id="chaos">
+
+<h2 class="section-title">🎪 THE PRANK DEPARTMENT</h2>
+
+<div class="grid">
+
+<div class="card">
+ <div class="emoji">🖱️</div>
+ <h3>The Escape Button</h3>
+ <p>Try to click it. I dare you.</p>
+ <button class="danger" id="runaway">CLICK ME</button>
+ <div class="result" id="escapeResult"></div>
+</div>
+
+<div class="card">
+ <div class="emoji">🧠</div>
+ <h3>IQ Scanner</h3>
+ <p>Discover your totally scientific intelligence score.</p>
+ <button class="secondary" onclick="iq()">SCAN MY BRAIN</button>
+ <div class="result" id="iqResult"></div>
+</div>
+
+<div class="card">
+ <div class="emoji">🦆</div>
+ <h3>Duck Generator</h3>
+ <p>Generate a completely unnecessary duck.</p>
+ <button class="primary" onclick="duck()">GENERATE DUCK</button>
+ <div class="result" id="duckResult"></div>
+</div>
+
+<div class="card">
+ <div class="emoji">🤡</div>
+ <h3>Insult Machine</h3>
+ <p>Prepare to be mildly disappointed.</p>
+ <button class="danger" onclick="insult()">ROAST ME</button>
+ <div class="result" id="insultResult"></div>
+</div>
+
+<div class="card">
+ <div class="emoji">🔮</div>
+ <h3>Future Predictor</h3>
+ <p>Find out what happens tomorrow.</p>
+ <button class="secondary" onclick="future()">PREDICT MY FUTURE</button>
+ <div class="result" id="futureResult"></div>
+</div>
+
+<div class="card">
+ <div class="emoji">🪄</div>
+ <h3>Nothing Button</h3>
+ <p>This button does absolutely nothing.</p>
+ <button class="primary" onclick="nothing()">DO NOTHING</button>
+ <div class="result" id="nothingResult"></div>
+</div>
+
+</div>
+</section>
+
+<section class="section">
+<h2 class="section-title">🖥️ COMPLETELY FAKE COMPUTER</h2>
+
+<div class="panel">
+ <h3>INTERNET.EXE SYSTEM DIAGNOSTICS</h3>
+ <p>Checking absolutely nothing. Please wait.</p>
+ <div id="loadingBar"><div id="loadingFill"></div></div>
+ <h2 id="loadingText">0%</h2>
+ <button class="primary" onclick="diagnostics()">RUN DIAGNOSTICS</button>
+ <div class="fake-screen" id="terminal">
+ > System started...<br>
+ > Waiting for someone to press a button...
+ </div>
+</div>
+</section>
+
+<section class="section">
+<h2 class="section-title">🎮 THE POINTLESS GAME ZONE</h2>
+
+<div class="grid">
+
+<div class="card">
+ <div class="emoji">🎯</div>
+ <h3>Click Counter</h3>
+ <p>How many times can you click?</p>
+ <div id="score">0 CLICKS</div>
+ <button class="primary" onclick="clickCount()">CLICK HERE</button>
+ <button class="secondary" onclick="resetCount()">RESET</button>
+</div>
+
+<div class="card">
+ <div class="emoji">🎲</div>
+ <h3>Random Number</h3>
+ <p>Generate a number between 1 and 999999.</p>
+ <button class="secondary" onclick="randomNumber()">ROLL</button>
+ <div class="result" id="numberResult"></div>
+</div>
+
+<div class="card">
+ <div class="emoji">🧩</div>
+ <h3>Colour Chaos</h3>
+ <p>Change the entire website colour.</p>
+ <button class="primary" onclick="changeColour()">CHANGE COLOUR</button>
+ <div class="result" id="colourResult"></div>
+</div>
+
+<div class="card">
+ <div class="emoji">🕵️</div>
+ <h3>Secret Agent</h3>
+ <p>Try entering the secret password.</p>
+ <input id="secretInput" placeholder="Enter password...">
+ <button class="secondary" onclick="secretAgent()">UNLOCK</button>
+ <div class="result" id="secretResult"></div>
+</div>
+
+</div>
+</section>
+
+<section class="section">
+<h2 class="section-title">📡 THE NONSENSE GENERATOR</h2>
+
+<div class="panel">
+ <h3>Generate an extremely important message</h3>
+ <p>Our scientists have worked very hard on this.</p>
+ <button class="primary" onclick="nonsense()">GENERATE NONSENSE</button>
+ <div class="result" id="nonsenseResult"></div>
+</div>
+</section>
+
+<section class="section">
+<h2 class="section-title">🏆 YOUR ACHIEVEMENTS</h2>
+<div class="panel">
+ <h3>CHAOS LEVEL</h3>
+ <h1 id="level">LEVEL 1</h1>
+ <p id="achievements">You have achieved absolutely nothing.</p>
+ <div id="achievementList"></div>
+</div>
+</section>
+
+<section class="section">
+<h2 class="section-title">🚨 EXTREME BUTTONS</h2>
+<div class="grid">
+
+<div class="card">
+ <h3>THE BIG RED BUTTON</h3>
+ <p>Probably should not press this.</p>
+ <button class="danger" onclick="redButton()">DO NOT PRESS</button>
+ <div class="result" id="redResult"></div>
+</div>
+
+<div class="card">
+ <h3>GRAVITY TEST</h3>
+ <p>Test the laws of physics.</p>
+ <button class="secondary" onclick="gravity()">DEFY GRAVITY</button>
+ <div class="result" id="gravityResult"></div>
+</div>
+
+<div class="card">
+ <h3>THE CONFUSION MACHINE</h3>
+ <p>Understand less than you did before.</p>
+ <button class="primary" onclick="confusion()">CONFUSE ME</button>
+ <div class="result" id="confusionResult"></div>
+</div>
+
+<div class="card">
+ <h3>THE COMPLIMENT MACHINE</h3>
+ <p>Finally, some positivity.</p>
+ <button class="secondary" onclick="compliment()">COMPLIMENT ME</button>
+ <div class="result" id="complimentResult"></div>
+</div>
+
+</div>
+</section>
+
+<footer>
+ <h2>💀 INTERNET.EXE</h2>
+ <p>Created by absolutely nobody important.</p>
+ <p>Copyright © 2026 The Department of Nonsense.</p>
+ <p class="secret" onclick="toast('YOU FOUND THE SECRET FOOTER. LEGEND.')">
+ There is nothing to see here.
+ </p>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+let clicks = 0;
+let chaos = 0;
+let toastTimer;
+
+function toast(message) {
+ const t = document.getElementById('toast');
+ t.innerText = message;
+ t.classList.add('show');
+ clearTimeout(toastTimer);
+ toastTimer = setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+function addChaos(amount=1) {
+ chaos += amount;
+ document.getElementById('level').innerText =
+ 'LEVEL ' + Math.floor(chaos/3 + 1);
+ document.getElementById('achievements').innerText =
+ chaos + ' chaos points collected.';
+ document.getElementById('achievementList').innerHTML =
+ chaos>=30 ? '🏆 ULTIMATE CHAOS MASTER' :
+ chaos>=15 ? '🥇 PROFESSIONAL MENACE' :
+ chaos>=5 ? '⭐ CERTIFIED TROUBLEMAKER' :
+ '🌱 CHAOS BEGINNER';
+}
+
+function scrollToStuff() {
+ document.getElementById('chaos').scrollIntoView({behavior:'smooth'});
+}
+
+function iq() {
+ const results=[
+ 'IQ: 9000. You are probably a toaster.',
+ 'IQ: 2. The calculator is concerned.',
+ 'IQ: 404. Intelligence not found.',
+ 'IQ: 1000000. Congratulations, Einstein.',
+ 'IQ: UNKNOWN. Your brain has left the chat.'
+ ];
+ document.getElementById('iqResult').innerText =
+ results[Math.floor(Math.random()*results.length)];
+ addChaos();
+}
+
+function duck() {
+ const ducks=['🦆','🐥','🐤','🦢','🐓'];
+ const duck=ducks[Math.floor(Math.random()*ducks.length)];
+ document.getElementById('duckResult').innerText =
+ duck+' YOUR DUCK HAS ARRIVED.';
+ addChaos();
+}
+
+function insult() {
+ const lines=[
+ 'You have the energy of a loading screen.',
+ 'Your Wi-Fi has more connections than you.',
+ 'Even autocorrect gave up on you.',
+ 'You are the human version of a typo.',
+ 'Your brain is running on Internet Explorer.',
+ 'You could lose a game of hide and seek with a lamp.',
+ 'Your fridge has better ideas.'
+ ];
+ document.getElementById('insultResult').innerText =
+ lines[Math.floor(Math.random()*lines.length)];
+ addChaos();
+}
+
+function future() {
+ const predictions=[
+ 'You will see a duck within 48 hours.',
+ 'Someone will say your name tomorrow.',
+ 'You will forget why you opened this website.',
+ 'You will become famous for absolutely no reason.',
+ 'Your next snack will be delicious.',
+ 'A mysterious sock will disappear.'
+ ];
+ document.getElementById('futureResult').innerText =
+ predictions[Math.floor(Math.random()*predictions.length)];
+ addChaos();
+}
+
+function nothing() {
+ const lines=[
+ 'You did nothing. Congratulations.',
+ 'Absolutely nothing has happened.',
+ 'The nothing department thanks you.',
+ 'You have successfully wasted 0 seconds.',
+ 'Error: Nothing was found.'
+ ];
+ document.getElementById('nothingResult').innerText =
+ lines[Math.floor(Math.random()*lines.length)];
+ addChaos();
+}
+
+function diagnostics() {
+ let progress=0;
+ const fill=document.getElementById('loadingFill');
+ const label=document.getElementById('loadingText');
+ const terminal=document.getElementById('terminal');
+ const lines=[
+ 'Checking brain cells...',
+ 'Scanning fridge...',
+ 'Locating missing socks...',
+ 'Calculating duck population...',
+ 'Searching for common sense...',
+ 'SYSTEM IS PERFECTLY USELESS.'
+ ];
+ terminal.innerHTML='> DIAGNOSTIC STARTED<br>';
+ const interval=setInterval(()=>{
+  progress+=Math.floor(Math.random()*13)+3;
+  if(progress>=100) {
+   progress=100;
+   clearInterval(interval);
+   terminal.innerHTML+='> COMPLETE. NOTHING FOUND.<br>> SYSTEM STATUS: CHAOTIC';
+   toast('DIAGNOSTICS COMPLETE. YOU FOUND NOTHING.');
+   addChaos(3);
+  } else {
+   terminal.innerHTML+='> '+lines[Math.floor(Math.random()*lines.length)]+'<br>';
+  }
+  fill.style.width=progress+'%';
+  label.innerText=progress+'%';
+ },250);
+}
+
+function clickCount() {
+ clicks++;
+ document.getElementById('score').innerText=clicks+' CLICKS';
+ if(clicks===10) toast('10 CLICKS! VERY IMPRESSIVE.');
+ if(clicks===50) toast('50 CLICKS! GET A HOBBY.');
+ if(clicks===100) toast('100 CLICKS. YOU ARE A MACHINE.');
+ addChaos();
+}
+
+function resetCount() {
+ clicks=0;
+ document.getElementById('score').innerText='0 CLICKS';
+ toast('YOUR CLICKS HAVE BEEN ERASED.');
+}
+
+function randomNumber() {
+ const number=Math.floor(Math.random()*999999)+1;
+ document.getElementById('numberResult').innerText='YOUR NUMBER: '+number;
+ addChaos();
+}
+
+const colours=['#090914','#291047','#003a43','#32130a','#172c17','#35113c','#161c36'];
+
+function changeColour() {
+ const colour=colours[Math.floor(Math.random()*colours.length)];
+ document.body.style.background=colour;
+ document.getElementById('colourResult').innerText='COLOUR SELECTED: '+colour;
+ addChaos();
+}
+
+function secretAgent() {
+ const input=document.getElementById('secretInput').value.toLowerCase().trim();
+ if(input==='duck') {
+  document.getElementById('secretResult').innerText='🔓 ACCESS GRANTED. QUACK.';
+  toast('SECRET AGENT UNLOCKED.');
+  addChaos(5);
+ } else {
+  document.getElementById('secretResult').innerText='ACCESS DENIED. TRY AGAIN.';
+ }
+}
+
+function nonsense() {
+ const a=['THE DUCK','A POTATO','YOUR TOASTER','THE PRESIDENT OF MARS','A RANDOM BANANA'];
+ const b=['HAS DECLARED WAR ON','IS SECRETLY FRIENDS WITH','HAS STOLEN','IS RUNNING AWAY FROM','HAS DEFEATED'];
+ const c=['THE MOON','A GIANT CHICKEN','THE INTERNET','A FLYING SOCK','THE ENTIRE PLANET'];
+ const pick=x=>x[Math.floor(Math.random()*x.length)];
+ document.getElementById('nonsenseResult').innerText=
+ pick(a)+' '+pick(b)+' '+pick(c)+'.';
+ addChaos();
+}
+
+function redButton() {
+ const messages=[
+ 'YOU PRESSED IT. NOTHING HAPPENED.',
+ 'THE DUCK HAS BEEN NOTIFIED.',
+ 'ERROR 999: COMMON SENSE MISSING.',
+ 'THE BUTTON HAS RESIGNED.',
+ 'YOU HAVE ANGERED THE POTATO.'
+ ];
+ document.getElementById('redResult').innerText=
+ messages[Math.floor(Math.random()*messages.length)];
+ document.body.classList.toggle('shake');
+ setTimeout(()=>document.body.classList.remove('shake'),700);
+ addChaos(2);
+}
+
+function gravity() {
+ document.getElementById('gravityResult').innerText=
+ 'GRAVITY HAS BEEN CANCELLED. (NOT REALLY.)';
+ document.querySelectorAll('.card').forEach(card=>{
+  card.style.transform='rotate('+((Math.random()*8)-4)+'deg)';
+ });
+ setTimeout(()=>{
+  document.querySelectorAll('.card').forEach(card=>{
+   card.style.transform='';
+  });
+ },1200);
+ addChaos();
+}
+
+function confusion() {
+ const text=[
+ 'WHY IS THE SKY UNDER THE FLOOR?',
+ 'THE NUMBER 7 IS FEELING SUSPICIOUS.',
+ 'YOUR LEFT SHOE KNOWS TOO MUCH.',
+ 'A BANANA IS JUST A FRUIT IN DISGUISE.',
+ 'THE INTERNET IS ACTUALLY A VERY LARGE POTATO.'
+ ];
+ document.getElementById('confusionResult').innerText=
+ text[Math.floor(Math.random()*text.length)];
+ addChaos();
+}
+
+function compliment() {
+ const lines=[
+ 'You are genuinely awesome.',
+ 'You have elite levels of creativity.',
+ 'You are doing better than you think.',
+ 'You have legendary main character energy.',
+ 'You are a certified legend.'
+ ];
+ document.getElementById('complimentResult').innerText=
+ lines[Math.floor(Math.random()*lines.length)];
+ addChaos();
+}
+
+const runaway=document.getElementById('runaway');
+let escapes=0;
+
+runaway.addEventListener('mouseenter',()=>{
+ if(escapes<6) {
+  runaway.style.transform=
+   'translate('+((Math.random()*100)-50)+'px,'+
+   ((Math.random()*60)-30)+'px)';
+  escapes++;
+  document.getElementById('escapeResult').innerText=
+   'HAHA! ESCAPED '+escapes+' TIMES.';
+ } else {
+  runaway.style.transform='none';
+  runaway.innerText='OK YOU WIN';
+  document.getElementById('escapeResult').innerText=
+   'THE BUTTON HAS ACCEPTED DEFEAT.';
+ }
+});
+
+let konami=[];
+document.addEventListener('keydown',e=>{
+ konami.push(e.key.toLowerCase());
+ konami=konami.slice(-4);
+ if(konami.join('')==='duck') {
+  toast('SECRET DUCK CODE DISCOVERED 🦆');
+  addChaos(10);
+ }
+});
+
+let party=false;
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape') {
+  document.body.classList.toggle('party');
+  toast('EMERGENCY PARTY MODE.');
+ }
+});
+
+let secretClicks=0;
+document.querySelector('.logo').addEventListener('click',()=>{
+ secretClicks++;
+ if(secretClicks>=5) {
+  toast('YOU FOUND THE SECRET LOGO BUTTON.');
+  addChaos(10);
+  secretClicks=0;
+ }
+});
+</script>
+
+</body>
+</html>
